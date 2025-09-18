@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writers - Lit Writing</title>
+  <style>
+    :root {
+      --bg: #f2e9de;
+      --text: #1f1f1f;
+      --muted: #5b5b5b;
+      --link: #1f1f1f;
+      --link-hover: #000000;
+      --nav-bg: rgba(255,255,255,0.6);
+      --nav-border: rgba(0,0,0,0.08);
+      --accent: #1f1f1f;
+    }
+
+    html, body { height: 100%; margin: 0; background: var(--bg); color: var(--text); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.5; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: saturate(140%) blur(8px);
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--nav-border);
+    }
+
+    .nav {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      padding: 10px 20px 14px;
+    }
+
+    .brand { display: none; }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .tab {
+      text-decoration: none;
+      color: var(--link);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-align: center;
+      padding: 12px 6px;
+      font-weight: 800;
+      font-size: clamp(16px, 2.8vw, 28px);
+      position: relative;
+      transition: transform 160ms ease, color 160ms ease;
+      display: inline-block;
+    }
+
+    .tab:after {
+      content: "";
+      position: absolute;
+      left: 12%; right: 12%; bottom: 6px;
+      height: 2px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 160ms ease;
+      opacity: 0.8;
+    }
+
+    .tab:hover { color: var(--link-hover); transform: scale(0.98) skewX(-2deg); }
+    .tab:hover:after { transform: scaleX(1); }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
+    h1 { font-size: clamp(28px, 4.2vw, 44px); line-height: 1.2; letter-spacing: -0.2px; font-weight: 700; }
+    p { color: var(--muted); font-size: 16px; }
+    .card { background: rgba(255,255,255,0.55); border: 1px solid var(--nav-border); border-radius: 14px; padding: 18px; margin-bottom: 18px; }
+    .card h2 { margin: 0 0 8px 0; font-size: 18px; letter-spacing: 0.2px; }
+
+    .site-footer { max-width: 1100px; margin: 40px auto 20px; padding: 0 20px; color: var(--muted); font-size: 14px; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <div class="brand">Lit Writing</div>
+      <div class="tabs" role="tablist">
+        <a class="tab" href="litwritingweb.html">ABOUT</a>
+        <a class="tab" href="WORK.html">WORK</a>
+        <a class="tab" href="WRITERS.html">WRITERS</a>
+        <a class="tab" href="CONTACT.html">CONTACT</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Writers</h1>
+    <div class="card">
+      <h2>Writer Name</h2>
+      <p>Short bio </p>
+    </div>
+    <div class="card">
+      <h2>Writer Name</h2>
+      <p>Short bio</p>
+    </div>
+    <div class="card">
+      <h2>Writer Name</h2>
+      <p>Short bio</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    © <span id="year"></span> Lit Writing. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
