@@ -20,16 +20,14 @@
 
     body {
       margin: 0;
-      background: var(--bg);
+      background: url('homepagebg.png') no-repeat center center fixed;
+      background-size: cover;
       color: var(--text);
       font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", Roboto, "Noto Sans", sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       line-height: 1.5;
       overflow-x: hidden;
     }
 
-    /* Top navigation - big, uppercase, spread out */
     .site-header {
       position: sticky;
       top: 0;
@@ -46,8 +44,6 @@
       grid-template-columns: 1fr;
       padding: 10px 20px 14px;
     }
-
-    .brand { display: none; }
 
     .tabs {
       display: grid;
@@ -71,7 +67,6 @@
       display: inline-block;
     }
 
-    /* squish and underline on hover */
     .tab:after {
       content: "";
       position: absolute;
@@ -87,60 +82,6 @@
     .tab:hover { color: var(--link-hover); transform: scale(0.98) skewX(-2deg); }
     .tab:hover:after { transform: scaleX(1); }
 
-    /* Homepage word collage */
-    .word-cloud {
-      position: relative;
-      height: calc(100vh - 88px);
-      max-height: 900px;
-      overflow: hidden;
-    }
-
-    .word {
-      position: absolute;
-      font-weight: 800;
-      text-transform: uppercase;
-      color: var(--text);
-      mix-blend-mode: multiply;
-      user-select: none;
-      white-space: nowrap;
-      transform: translate(-50%, -50%) rotate(var(--rot, -4deg));
-      animation: float var(--dur, 9s) ease-in-out infinite alternate, tilt 6s ease-in-out infinite;
-      will-change: transform, opacity;
-      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.08));
-    }
-
-    .word[data-variant="1"] { font-size: clamp(22px, 6vw, 68px); }
-    .word[data-variant="2"] { font-size: clamp(18px, 4.5vw, 52px); opacity: 0.9; }
-    .word[data-variant="3"] { font-size: clamp(16px, 3.6vw, 42px); opacity: 0.85; }
-
-    /* Pastel accent overlays behind some words */
-    .word:before {
-      content: "";
-      position: absolute;
-      inset: -6px -10px;
-      background: radial-gradient(120px 50px at 40% 50%, rgba(255,255,255,0.7), rgba(255,255,255,0));
-      transform: rotate(-6deg);
-      z-index: -1;
-      border-radius: 18px;
-      filter: blur(1px);
-    }
-
-    @keyframes float {
-      0% { transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) rotate(var(--rot)); }
-      100% { transform: translate(calc((var(--x) + var(--dx)) * 1px), calc((var(--y) + var(--dy)) * 1px)) rotate(calc(var(--rot) + var(--drot))); }
-    }
-
-    @keyframes tilt {
-      0%, 100% { letter-spacing: 2px; }
-      50% { letter-spacing: 3px; }
-    }
-
-    /* Pile effect: some words stack slightly */
-    .word[data-depth="1"] { z-index: 1; }
-    .word[data-depth="2"] { z-index: 2; }
-    .word[data-depth="3"] { z-index: 3; }
-
-    /* Content wrapper below collage */
     .container { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
 
     .hero { padding: 24px 0; }
@@ -178,20 +119,16 @@
 <body>
   <header class="site-header">
     <nav class="nav" aria-label="Primary">
-      <div class="brand">Lit Writing</div>
       <div class="tabs" role="tablist">
-        <a class="tab" href="litwritingweb.html" role="tab" aria-controls="about">ABOUT</a>
-        <a class="tab" href="WORK.html" role="tab" aria-controls="work">WORK</a>
-        <a class="tab" href="WRITERS.html" role="tab" aria-controls="writers">WRITERS</a>
-        <a class="tab" href="CONTACT.html" role="tab" aria-controls="contact">CONTACT</a>
+        <a class="tab" href="index.html">ABOUT</a>
+        <a class="tab" href="WORK.html">WORK</a>
+        <a class="tab" href="WRITERS.html">WRITERS</a>
+        <a class="tab" href="CONTACT.html">CONTACT</a>
       </div>
     </nav>
   </header>
 
-  <!-- Word collage homepage -->
-  <section class="word-cloud" aria-label="Creative Collage">
-    <!-- Words are injected by JS for random placement/animation -->
-  </section>
+  
 
   <main class="container">
     <section class="hero" id="about">
@@ -202,18 +139,13 @@
     <section class="grid" id="work" aria-label="Work">
       <article class="card">
         <h2>Title</h2>
-        <p>description</p>
+        <p>Description</p>
       </article>
       <article class="card">
         <h2>Title</h2>
-        <p>description</p>
-      </article>
-      <article class="card">
-        <h2>Title</h2>
-        <p>description</p>
+        <p>Description</p>
       </article>
     </section>
-
   </main>
 
   <footer class="site-footer">
@@ -221,197 +153,7 @@
   </footer>
 
   <script>
-    // Always start at the very top when loading this page
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
-    window.scrollTo(0, 0);
-
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Full word list
-    const allWords = [
-      'company','new','the','creates','systems','imagine','audiences','     and','  intent','imagination','craft','stories','design','meaning','intention','ideas','play','future','write','platforms','light','sound','motion','literature',  'imagine','create','stories','words','poetry','fiction','essays','write','inspire','dream',
-  'think',' craft','        plot','characters','narrative','voice','dialogue','theme','style','verse',
-  'metaphor','symbol',' drama','    scene','    prose','literature','expression','idea','vision','page',
-  'novel','shortstory','collection','journal','reflection','storytelling','editor','poet','author'
-    ];
-    const words = allWords.slice(0, 30); // target ~16 words
-
-    const cloud = document.querySelector('.word-cloud');
-
-    // Store placed rectangles to avoid overlap
-    let placedRects = [];
-
-    function rand(min, max) { return Math.random() * (max - min) + min; }
-
-    function intersects(a, b, pad = 16) {
-      return !(a.right + pad < b.left || a.left - pad > b.right || a.bottom + pad < b.top || a.top - pad > b.bottom);
-    }
-
-    function jitter(value, amount) { return value + rand(-amount, amount); }
-
-    function placeInCluster(el, targetX, targetY) {
-      const attemptsMax = 260; // more attempts to fit more words
-
-      // Temporarily append to measure
-      el.style.visibility = 'hidden';
-      el.style.left = '0px';
-      el.style.top = '0px';
-      cloud.appendChild(el);
-      const w = el.offsetWidth;
-      const h = el.offsetHeight;
-
-      let attempt = 0;
-      let x = targetX, y = targetY;
-      let ok = false;
-      while (attempt < attemptsMax && !ok) {
-        const rx = jitter(targetX, 26);
-        const ry = jitter(targetY, 22);
-        const rect = { left: rx - w / 2, right: rx + w / 2, top: ry - h / 2, bottom: ry + h / 2 };
-        ok = placedRects.every(pr => !intersects(rect, pr, 18));
-        if (ok) {
-          placedRects.push(rect);
-          x = rx; y = ry;
-        }
-        attempt++;
-      }
-
-      if (!ok) {
-        cloud.removeChild(el);
-        return null;
-      }
-
-      el.style.setProperty('--x', x);
-      el.style.setProperty('--y', y);
-      el.style.visibility = 'visible';
-
-      return { x, y, w, h };
-    }
-
-    function addWord(text, index, gridCenters) {
-      const el = document.createElement('span');
-      el.className = 'word';
-      el.dataset.variant = (index % 3) + 1;
-      el.dataset.depth = (index % 3) + 1;
-      el.textContent = text;
-
-      // Keep motion tight
-      const dx = rand(-10, 10);
-      const dy = rand(-8, 8);
-      const rot = rand(-6, 6);
-      const drot = (rand(-2.2, 2.2)).toFixed(2) + 'deg';
-      const dur = rand(8, 11).toFixed(2) + 's';
-
-      el.style.setProperty('--dx', dx);
-      el.style.setProperty('--dy', dy);
-      el.style.setProperty('--rot', rot + 'deg');
-      el.style.setProperty('--drot', drot);
-      el.style.setProperty('--dur', dur);
-
-      // Get a grid center for this index
-      const { x: gx, y: gy } = gridCenters[index % gridCenters.length];
-      const placed = placeInCluster(el, gx, gy);
-      if (!placed) return; // skip if cannot place without overlap
-      const baseX = placed.x;
-      const baseY = placed.y;
-
-      // gentle parallax
-      const onMouseMove = (e) => {
-        const rect = cloud.getBoundingClientRect();
-        const cx = rect.left + rect.width * 0.78;
-        const cy = rect.top + rect.height * 0.78;
-        const fx = (e.clientX - cx) / rect.width;
-        const fy = (e.clientY - cy) / rect.height;
-        const tilt = (rot + fx * 2);
-        el.style.transform = `translate(${baseX + dx * fx * 0.1}px, ${baseY + dy * fy * 0.1}px) rotate(${tilt}deg)`;
-      };
-      window.addEventListener('mousemove', onMouseMove);
-
-      el.addEventListener('mouseenter', () => {
-        el.style.transition = 'transform 140ms ease';
-        el.style.transform += ' scale(0.985, 0.95) translateY(-2px)';
-      });
-      el.addEventListener('mouseleave', () => {
-        el.style.transition = 'transform 220ms ease';
-      });
-    }
-
-function computeCornerCenters(count) {
-  const r = cloud.getBoundingClientRect();
-  const centers = [];
-
-  const stackCount = Math.ceil(count / 4); // words per stack
-
-  // First stack (right-ish)
-  const startX1 = r.width * 0.75;
-  const startY1 = r.height * 0.1;
-  const endY1 = r.height * 0.99;
-  for (let i = 0; i < stackCount; i++) {
-    const t = i / (stackCount - 1);
-    const x = startX1 + (Math.random() - 0.5) * 20;
-    const y = startY1 + t * (endY1 - startY1) + (Math.random() - 0.5) * 20;
-    centers.push({ x, y });
-  }
-
-  // Second stack (left-ish)
-  const startX2 = r.width * 0.57;
-  const startY2 = r.height * 0.4;
-  const endY2 = r.height * 0.99;
-  for (let i = 0; i < stackCount; i++) {
-    const t = i / (stackCount - 1);
-    const x = startX2 + (Math.random() - 0.5) * 20;
-    const y = startY2 + t * (endY2 - startY2) + (Math.random() - 0.5) * 20;
-    centers.push({ x, y });
-  }
-
-  // Third stack (middle-left)
-  const startX3 = r.width * 0.42;
-  const startY3 = r.height * 0.5;
-  const endY3 = r.height * 0.99;
-  for (let i = 0; i < stackCount; i++) {
-    const t = i / (stackCount - 1);
-    const x = startX3 + (Math.random() - 0.5) * 20;
-    const y = startY3 + t * (endY3 - startY3) + (Math.random() - 0.5) * 20;
-    centers.push({ x, y });
-  }
-
-  // Fourth stack (left-most)
-  const startX4 = r.width * 0.30;
-  const startY4 = r.height * 0.57;
-  const endY4 = r.height * 0.99;
-  for (let i = 0; i < stackCount; i++) {
-    const t = i / (stackCount - 1);
-    const x = startX4 + (Math.random() - 0.5) * 20;
-    const y = startY4 + t * (endY4 - startY4) + (Math.random() - 0.5) * 20;
-    centers.push({ x, y });
-  }
-
-  return centers;
-}
-
-
-
-
-
-
-
-    function populate() {
-      placedRects = [];
-      cloud.innerHTML = '';
-      const centers = computeCornerCenters(words.length);
-      words.forEach((w, i) => addWord(w, i, centers));
-    }
-
-    // Initial populate
-    populate();
-
-    // Re-layout on resize (debounced)
-    let resizeTO;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTO);
-      resizeTO = setTimeout(populate, 150);
-    });
   </script>
 </body>
 </html>
