@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lit Writing</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Top header -->
+  <header>
+    <div class="header-left">Lit Writing</div>
+    <div class="header-right" id="menuToggle">+</div>
+    <nav id="menu">
+      <ul>
+        <li><a href="index.html">Writings</a></li>
+        <li><a href="index.html#writers-section">Writers</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Left static section -->
+    <div class="left-panel">
+      <div class="title-space">
+        <!-- you can put images or text here later -->
+      </div>
+    </div>
+
+    <!-- Right scrollable section -->
+    <div class="right-panel">
+        <div class="right-inner">
+            <!-- Subheadings column -->
+            <div class="subheadings">
+              <div class="subheading-item">CONTACT</div>
+            </div>
+          
+            <!-- Grid area -->
+            <div class="grid-area">
+              <section class="category writings-section">
+                <div class="grid">
+                  <div class="box">CONTACT 1</div>
+                </div>
+              </section>
+            </div>
+          </div>          
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Menu toggle with plus -> X animation
+    const menuToggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
+  
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('show');
+      menuToggle.classList.toggle('open');
+    });
+  </script>
+  
+</body>
+</html>

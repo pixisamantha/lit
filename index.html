@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lit Writing</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Top header -->t
+  <header>
+    <div class="header-left">Lit Writing</div>
+    <div class="header-right" id="menuToggle">+</div>
+    <nav id="menu">
+      <ul>
+        <li><a href="#writings-section">Writings</a></li>
+        <li><a href="#writers-section">Writers</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Left static section -->
+    <div class="left-panel">
+      <div class="title-space">
+        <img src="frontbg.jpg" alt="Background" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+    </div>
+
+    <!-- Right scrollable section -->
+    <div class="right-panel">
+        <div class="right-inner">
+            <!-- Subheadings column -->
+            <div class="subheadings">
+              <div class="subheading-item">WRITINGS</div>
+              <div class="subheading-item writers-subheading">WRITERS</div>
+            </div>
+          
+            <!-- Grid area -->
+            <div class="grid-area">
+              <section id="writings-section" class="category writings-section">
+                <div class="grid">
+                  <div class="box">WRITING 1</div>
+                  <div class="box">WRITING 2</div>
+                  <div class="box">WRITING 3</div>
+                  <div class="box">WRITING 4</div>
+                  <div class="box">WRITING 5</div>
+                  <div class="box">WRITING 6</div>
+                  <div class="box">WRITING 7</div>
+                  <div class="box">WRITING 8</div>
+                  <div class="box">WRITING 9</div>
+                  <div class="box">WRITING 10</div>
+                </div>
+              </section>
+          
+              <!-- thin black line separator -->
+              <div class="section-separator"></div>
+          
+              <section id="writers-section" class="category writers-section"> 
+                <div class="grid">
+                  <div class="box">WRITER 1</div>
+                  <div class="box">WRITER 2</div>
+                  <div class="box">WRITER 3</div>
+                  <div class="box">WRITER 4</div>
+                  <div class="box">WRITER 5</div>
+                  <div class="box">WRITER 6</div>
+                  <div class="box">WRITER 7</div>
+                  <div class="box">WRITER 8</div>
+                  <div class="box">WRITER 9</div>
+                  <div class="box">WRITER 10</div>
+                </div>
+              </section>
+            </div>
+          </div>
+          
+          <div id="article-view" class="article-view">
+            <div class="article-content">
+              <span class="close" onclick="closeArticle()">&times;</span>
+              <h1 id="article-title"></h1>
+              <h4 id="article-author"></h4>
+              <h4 id="article-date"></h4>
+              <br>
+              <p id="article-text"></p>
+            </div>
+          </div>                    
+      </div>
+      
+
+  <script>
+    // Menu toggle with plus -> X animation
+    const menuToggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
+  
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('show');
+      menuToggle.classList.toggle('open');
+    });
+    
+    const articles = {
+    "WRITING 1": {
+      title: "the title",
+      author: "the author",
+      date: "the date",
+      text: `hihihi`
+    },
+    "WRITING 2": {
+      title: "The Title",
+      author: "the author",
+      date: "the date",
+      text: "Th balahbalhbahwhoebwoifebw"
+    },
+    "WRITING 3": {
+      title: "The Title",
+      author: "the author",
+      date: "the date",
+      text: "Th balahbalhbahwhoebwoifebw"
+    },
+    "WRITING 4": {
+      title: "The Title",
+      author: "the author",
+      date: "the date",
+      text: "Th balahbalhbahwhoebwoifebw"
+    },
+    "WRITING 5": {
+      title: "The Title",
+      author: "the author",
+      date: "the date",
+      text: "Th balahbalhbahwhoebwoifebw"
+    },
+    "WRITING 6": {
+      title: "The Title",
+      author: "the author",
+      date: "the date",
+      text: "Th balahbalhbahwhoebwoifebw"
+    },
+    "WRITING 7": {
+      title: "The Title",
+      author: "the author",
+      date: "the date",
+      text: "Th balahbalhbahwhoebwoifebw"
+    },
+    "WRITING 8": {
+      title: "The Title",
+      author: "the author",
+      date: "the date",
+      text: "Th balahbalhbahwhoebwoifebw"
+    },
+    "WRITING 9": {
+      title: "The Title",
+      author: "the author",
+      date: "the date",
+      text: "Th balahbalhbahwhoebwoifebw"
+    },
+    "WRITING 10": {
+      title: "The Title",
+      author: "the author",
+      date: "the date",
+      text: "Th balahbalhbahwhoebwoifebw"
+    },
+};
+document.querySelectorAll('.box').forEach(box => {
+    box.addEventListener('click', () => {
+      const key = box.textContent.trim();
+      const article = articles[key];
+      if (article) {
+        document.getElementById('article-title').textContent = article.title;
+        document.getElementById('article-author').textContent = article.author;
+        document.getElementById('article-date').textContent = article.date;
+        document.getElementById('article-text').innerHTML = article.text.replace(/\n/g, '<br>');
+        document.getElementById('article-view').style.display = 'flex';
+      }
+    });
+  });
+
+  function closeArticle() {
+    document.getElementById('article-view').style.display = 'none';
+  }
+  </script>
+  
+</body>
+</html>
