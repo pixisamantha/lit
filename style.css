@@ -92,7 +92,7 @@ nav a {
     text-decoration: none;
     font-size: 1.1rem;
     display: block;
-    font-family: 'Playfair Display', serif; /* match body font */
+    font-family: 'Playfair Display', serif;
     font-weight: 600;
 }
 
@@ -106,7 +106,7 @@ nav a:hover {
     cursor: pointer;
     user-select: none;
     transition: transform 0.3s ease;
-    font-family: 'Playfair Display', serif; /* match header font */
+    font-family: 'Playfair Display', serif; 
 }
 
 .header-right.open {
@@ -220,14 +220,12 @@ nav a:hover {
     align-self: flex-start;
   }
   
-  /* WRITINGS heading - stays at top (no special positioning needed) */
-  
-  /* WRITERS heading - positioned to align with writer boxes section start */
+  /* WRITINGS heading stays at top (no special positioning needed) */
+  /* WRITERS heading positioned to align with writer boxes section start */
   /* Position below separator line: writings section + separator top margin + separator bottom margin */
   .writers-subheading {
     position: absolute;
     top: calc(3 * (5rem + 5rem) + 2rem + 4.5rem);
-    /* Writings section height + separator top margin (2rem) + separator bottom margin (2rem) */
     right: 0;
   }
   
@@ -260,8 +258,9 @@ nav a:hover {
     background: #fff;
     padding: 2rem;
     border-radius: 10px;
-    width: 70%;
-    max-height: 80%;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
     overflow-y: auto;
     font-family: 'Playfair Display', serif;
     position: relative;
